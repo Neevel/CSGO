@@ -1,13 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
 public class ActionHandler implements ActionListener {
 	
 	private Window win; 
-	
+	Daten d = new Daten(); 
 	public ActionHandler(Window win) {
 		this.win = win; 
 	}
@@ -36,7 +37,14 @@ public class ActionHandler implements ActionListener {
 				win.sliderSize.setValue(5);
 				win.sliderGap.setValue(0);
 				win.sliderOutline.setValue(0);
+				win.d.setDot("cl_crosshairdot \"0\"");
+				win.lblDot.setIcon(new ImageIcon(Window.class.getResource("/crosshairImage/crosshair_dot_0.png")));
 				
+				
+				win.textArea.setText(d.getAlpha() + "\n" + d.getColor() + "\n" + d.getColor_b() + "\n" + d.getColor_r()
+				+ "\n" + d.getColor_g() + "\n" + d.getDot() + "\n" + d.getGap() + "\n" + d.getSize() + "\n"
+				+ d.getStyle() + "\n" + d.getUsealpha() + "\n" + d.getThickness() + "\n"
+				+ d.getFixedcrosshairgap() + "\n" + d.getOutlinethickness() + "\n" + d.getDrawoutline());
 				
 				
 			}
