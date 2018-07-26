@@ -68,16 +68,20 @@ public class Window extends JFrame {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		JColorChooser jColorChooser1 = new JColorChooser(); 
-		jColorChooser1.setLocation(104, 140);
-		jColorChooser1.setSize(683,218);
+		jColorChooser1.setLocation(364, 324);
+		jColorChooser1.setSize(577,245);
 		
 		AbstractColorChooserPanel[] panels = jColorChooser1.getChooserPanels();
 		for (AbstractColorChooserPanel accp : panels) {
 		   if(!accp.getDisplayName().equals("RGB")) {
 		      jColorChooser1.removeChooserPanel(accp);
-		      System.out.println(jColorChooser1.getSelectionModel().getSelectedColor().toString());
+		      System.out.println((jColorChooser1.getSelectionModel().getSelectedColor()));
 		      } 
 		}
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(364, 546, 89, 23);
+		getContentPane().add(btnNewButton_1);
 		getContentPane().add(jColorChooser1); 
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -354,6 +358,10 @@ public class Window extends JFrame {
 		textFieldOutline.setColumns(10);
 		textFieldOutline.setBounds(500, 303, 53, 20);
 		getContentPane().add(textFieldOutline);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(364, 546, 89, 23);
+		getContentPane().add(btnNewButton);
 		
 		lblDot = new JLabel("");
 		lblDot.setIcon(new ImageIcon(Window.class.getResource("/crosshairImage/crosshair_dot_0.png")));
