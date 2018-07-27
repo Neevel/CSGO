@@ -85,11 +85,7 @@ public class Window extends JFrame {
 		      } 
 		}
 		jColorChooser1.setVisible(false);
-	
-		Draw draw = new Draw(); 
-		
-		draw.paintComponents(getGraphics());
-		
+
 	
 		
 		
