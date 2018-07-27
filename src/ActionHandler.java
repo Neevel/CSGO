@@ -47,6 +47,12 @@ public class ActionHandler implements ActionListener {
 				+ d.getFixedcrosshairgap() + "\n" + d.getOutlinethickness() + "\n" + d.getDrawoutline());
 				
 				
+			}else {
+				if(source == win.btnChooseColor_1) {
+					win.jColorChooser1.setVisible(true);
+					System.out.println("asda");
+					
+				}
 			}
 	}
 

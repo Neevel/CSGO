@@ -21,7 +21,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
+import java.io.File;
 import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 import java.awt.ScrollPane;
@@ -37,11 +39,13 @@ import java.awt.Graphics2D;
 
 import javax.swing.JSlider;
 import javax.swing.JList;
+import javax.imageio.ImageIO;
 import javax.swing.DropMode;
 
 public class Window extends JFrame {
 	static JButton btnVisible;
 	static JButton btnExit;
+	static JButton btnChooseColor_1; 
 	JButton btnDefault;
 	JToggleButton alphaOnOff;
 	JToggleButton outlineOnOff;
@@ -60,16 +64,18 @@ public class Window extends JFrame {
 	static JLabel lblDot; 
 
 	Daten d = new Daten();
-
+	
+	
+	public JColorChooser jColorChooser1; 
 	public Window() {
 
 		setSize(1024, 768);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		JColorChooser jColorChooser1 = new JColorChooser(); 
-		jColorChooser1.setLocation(364, 324);
-		jColorChooser1.setSize(577,245);
+		jColorChooser1 = new JColorChooser();
+		jColorChooser1.setLocation(364, 140);
+		jColorChooser1.setSize(577,429);
 		
 		AbstractColorChooserPanel[] panels = jColorChooser1.getChooserPanels();
 		for (AbstractColorChooserPanel accp : panels) {
@@ -78,12 +84,17 @@ public class Window extends JFrame {
 		      System.out.println((jColorChooser1.getSelectionModel().getSelectedColor()));
 		      } 
 		}
+		jColorChooser1.setVisible(false);
+	
+		Draw draw = new Draw(); 
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(364, 546, 89, 23);
-		getContentPane().add(btnNewButton_1);
-		getContentPane().add(jColorChooser1); 
-
+		draw.paintComponents(getGraphics());
+		
+	
+		
+		
+		
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setFocusCycleRoot(true);
 		scrollPane.setBounds(new Rectangle(1, 1, 1, 1));
@@ -220,6 +231,9 @@ public class Window extends JFrame {
 		crosshair_outline_1.setIcon(new ImageIcon(Window.class.getResource("/crosshairImage/crosshair_outline_1.png")));
 		crosshair_outline_1.setBounds(480, 305, 20, 20);
 		getContentPane().add(crosshair_outline_1);
+		
+		
+		
 
 		sliderAlpha = new JSlider();
 		sliderAlpha.setOpaque(false);
@@ -359,10 +373,6 @@ public class Window extends JFrame {
 		textFieldOutline.setBounds(500, 303, 53, 20);
 		getContentPane().add(textFieldOutline);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(364, 546, 89, 23);
-		getContentPane().add(btnNewButton);
-		
 		lblDot = new JLabel("");
 		lblDot.setIcon(new ImageIcon(Window.class.getResource("/crosshairImage/crosshair_dot_0.png")));
 		lblDot.setBounds(262, 459, 29, 30);
@@ -397,6 +407,25 @@ public class Window extends JFrame {
 				getContentPane().add(btnToggleDot);
 		
 				btnToggleDot.addItemListener(itemListenerDot);
+				
+				JLabel drag = new JLabel("");
+				drag.setBounds(0, 0, 884, 75);
+				getContentPane().add(drag);
+				drag.addMouseListener(new MouseHandler(this));
+				drag.addMouseMotionListener(new MouseHandler(this));
+				
+				
+				btnChooseColor_1 = new JButton("Choose Color");
+				btnChooseColor_1.setBounds(250, 342, 117, 23);
+				btnChooseColor_1.addActionListener(new ActionHandler(this));
+				getContentPane().add(btnChooseColor_1);
+				
+				JLabel lblNewLabel_1 = new JLabel("");
+				lblNewLabel_1.setIcon(new ImageIcon(Window.class.getResource("/crosshairImage/Enemy.png")));
+				lblNewLabel_1.setBounds(771, 100, 163, 291);
+				getContentPane().add(lblNewLabel_1);
+				
+				
 		
 				JLabel lblProgrammHintergrund = new JLabel("");
 				lblProgrammHintergrund
@@ -431,12 +460,14 @@ public class Window extends JFrame {
 		this.btnExit.setBorderPainted(false);
 		// this.btnExit.setForeground(new Color(156, 124, 73,100));
 		this.btnExit.addActionListener(new ActionHandler(this));
-		this.btnExit.addMouseListener(new MouseHandler());
+		//this.btnExit.addMouseListener(new MouseHandler(this));
 		this.btnExit.requestFocus();
 		getContentPane().add(this.btnExit);
 		getContentPane().add(this.btnVisible);
 
 		setVisible(true);
+		
 
 	}
+	
 }
